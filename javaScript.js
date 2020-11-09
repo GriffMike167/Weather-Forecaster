@@ -44,6 +44,22 @@ $.ajax({
 
 });
 
+$ajax({
+  url: queryURlFive,
+  method: "GET"
+}).then(function(response) {
+  console.log(queryURLFive);
+  console.log(response);
+
+let dayOne = moment(response.list[0].dt_txt).format("ddd,MMM D");
+$(".day-one-date").html("<h6>" + dayOne + "</h6>")
+$(".day-one-humidity").text("Humidity: " + response.list[0].main.humidity +"%");
+
+let tempOne = (response.list[0].main.temp - 273.15) * 1.80 + 32;
+$(".day-one-temp").text("Temp: " + Math.random(tempOne) + " °F")
+
+
+
 
 function searchFunction (){
   localStorage.setItem("inputcontent-" + searchInput.val(), searchInput.val());

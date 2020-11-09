@@ -37,15 +37,28 @@
                         Search by City:
 
                 <form class="form-inline">
-                    <input class="form-control mr-sm-2 input" type="search" placeholder="Search"></div>
+                    <input class="form-control mr-sm-2 input" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-succes my-2 my-sm-0 search" type="submit">
                         <i class="fas fa-search-location"></i>
                         </button>
                 </form>
+
+                <div class="output"></div>
             </div>
         </div>
     </div>
-    
+    <div class="col-md-9">
+        <div class="card current">
+            <div class="card-body">
+                <p class="current-date"></p>
+                <p class="city"></p>
+                <p class="tempF"></p>
+                <p class="humdity"></p>
+                <p class="wind"></p>
+                <p class="uv"></p>
+            </div>
+        </div>
+    </div>
 </body>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

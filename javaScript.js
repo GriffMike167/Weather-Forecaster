@@ -56,7 +56,7 @@ for (var i = 0; i < localStorage.lenght; i++){
   
 }
 
-let currentDay = moment().format("dddd, MMMM do");
+let currentDay = moment().format("dddd, MMMM Do YYYY");
 
 function insertCurrentDay(){
   $(".current-date").text(currentDay);

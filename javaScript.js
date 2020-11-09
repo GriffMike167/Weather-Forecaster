@@ -15,3 +15,13 @@ for (var i = 0; i < localStorage.lenght; i++){
   
 }
 
+let currentDay = moment().format("dddd, MMMM do");
+
+function insertCurrentDay(){
+  $(".current-date").text(currentDay);
+};
+
+insertCurrentDay();
+
+console.log(currentDay);
+

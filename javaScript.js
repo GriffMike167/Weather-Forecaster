@@ -9,3 +9,9 @@ function searchFunction (){
 
 }
 
+for (var i = 0; i < localStorage.lenght; i++){
+  $("output").append("<p class='cityresult'>" + localStorage.getItem(
+    localStorage.key(i)) + "</p>")
+  
+}
+

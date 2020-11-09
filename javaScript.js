@@ -44,9 +44,10 @@ $.ajax({
 
 });
 
+
 function searchFunction (){
-  localStorage.setItme("inputcontent-" + searchInput.val(), searchInput.val());
-  localStorage.setItme("lastresult", searchInput.val());
+  localStorage.setItem("inputcontent-" + searchInput.val(), searchInput.val());
+  localStorage.setItem("lastresult", searchInput.val());
 
 }
 

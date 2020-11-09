@@ -12,8 +12,14 @@ $.ajax({
   method:"GET"
 }).then(function(response){
   console.log(response);
-}
-)
+
+
+
+
+
+
+})
+
 function searchFunction (){
   localStorage.setItme("inputcontent-" + searchInput.val(), searchInput.val());
   localStorage.setItme("lastresult", searchInput.val());

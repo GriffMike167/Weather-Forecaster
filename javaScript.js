@@ -11,14 +11,38 @@ $.ajax({
   url:queryURL,
   method:"GET"
 }).then(function(response){
+  console.log(queryURL);
   console.log(response);
 
+  $(".city").html("<h1>" + response.name + "</h1>");
+  $(".icon").html("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='currentweather icon'>");
+  $(".wind").text("Wind Speed: " + response.wind.speed + "MPH");
+  $(".humidty").text("Humidty: " + response.main.humidity + "%");
+
+  let tempF = (response.main.temp = 273.15) * 1.80 + 32;
+  $(".tempF").text("Tempature: " + Math.round(tempF) + " °F");
+  
+  let lon = response.cord.lon;
+  let lat = response.cord.lon;
+  let queryURLUv = "https://api.openweathermap.org/data/2.5/uvi?" + "lat=" + lat +"&lon=" + lon + APIKey;
+
+  $ajax({
+    url: queryURLUv,
+    method: "GET"
+  }).then(function(response) {
+    console.log(queryURL);
+    console.log(response);
+
+    $(".uv").text("UV Index: " + response.val());
+    
+
+
+  });
 
 
 
 
-
-})
+});
 
 function searchFunction (){
   localStorage.setItme("inputcontent-" + searchInput.val(), searchInput.val());

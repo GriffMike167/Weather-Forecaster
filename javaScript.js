@@ -7,10 +7,10 @@ $("city-input").submit(function(event){
 
     let cityName = $("city-name").val();
     searchWeather(cityName);
-})
+});
 
 function searchWeather(city){
-let queryURL = "http://api.openweathermap.org/data/2.5/forcast?q={cityname}id=524901&appid=2b0e45595d4ae6038fa0a7f4e34573f0";
+let queryURL = "http://api.openweathermap.org/data/2.5/forcast?q="+city+"id=524901&appid=2b0e45595d4ae6038fa0a7f4e34573f0";
     
 
 
@@ -21,4 +21,4 @@ $.ajax({
   method: "GET"
 }).then(function(response) {
   console.log(response)
-})};
+})};searchWeather();

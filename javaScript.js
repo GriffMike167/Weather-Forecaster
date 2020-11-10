@@ -54,7 +54,7 @@ $.ajax({
   console.log(queryURLFive);
   console.log(response);
 
-let dayOne = moment(response.list[o].dt_txt).format("ddd, MMM D");
+let dayOne = moment(response.list[0].dt_txt).format("ddd, MMM Do");
 $(".day-one-date").html("<h6>" + dayOne + "</h6>")
 $(".day-one-humidity").text("Humidity: " + response.list[0].main.humidity +"%");
 

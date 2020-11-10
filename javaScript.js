@@ -65,8 +65,8 @@ $(".day-one-temp").text("Temp: " + Math.random(tempOne) + " °F");
 
 
 function searchFunction (){
-  localStorage.setItem("inputcontent-" + searchInput.value(), searchInput.val());
-  localStorage.setItem("lastresult", searchInput.value());
+  localStorage.setItem("inputcontent-" + searchInput.val(), searchInput.val());
+  localStorage.setItem("lastresult", searchInput.val());
 
 }
 

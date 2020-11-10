@@ -1,0 +1,50 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    font-size: 30px;
+  }
+.bg-light {
+    background-color: darkgray;
+    color: whitesmoke;
+
+}
+i {
+    font-size: 18px;
+    color: rgb(189, 188, 188);
+
+}
+
+body {
+    background: grey;
+
+}
+
+.current {
+    border: none;
+    width: 100%;
+    background-color: whitesmoke;
+    margin-right: 25px;
+    color: black;
+
+}
+
+.five-day {
+    border: none;
+    width: 100%;
+    font-size: 22px;
+    background-color: whitesmoke;
+    color: black;
+    margin-right: 30px;
+
+}
+
+.cities {
+    width: 100%;
+    background-color: whitesmoke;
+    margin-bottom: 25%;
+    color: black;
+    
+}
+
+

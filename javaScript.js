@@ -1,88 +1,114 @@
 
 
 
-let APIKey = "&appid=2b0e45595d4ae6038fa0a7f4e34573f0";
-let city = localStorage.getItem("lastResult");
-let queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+city+APIKey;
-let queryURLFive = "https://api.openweathermap.org/data/2.5/forecast?q="+city+APIKey;
-let searchInput = $(".input");
-let searchOutput = $(".output");
-let $searchButton = $(".search");
-$searchButton.on("click", searchFunction);
+var APIKey = "&appid=a1e01b951a95042a50e99d7d3222a66d";
+var city = localStorage.getItem("lastresult");
+
+
+
+
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + APIKey;
+    var queryURLFive = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + APIKey;
+
+
 
 $.ajax({
-  url:queryURL,
-  method:"GET"
-}).then(function(response){
-  console.log(queryURL);
-  console.log(response);
-
-  $(".city").html("<h1>" + response.name + "</h1>");
-  $(".icon").html("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='currentweather icon'>");
-  $(".wind").text("Wind Speed: " + response.wind.speed + "MPH");
-  $(".humidty").text("Humidty: " + response.main.humidity + "%");
-
-  let tempF = (response.main.temp = 273.15) * 1.80 + 32;
-  $(".tempF").text("Tempature: " + Math.round(tempF) + " °F");
-  
-  let lon = response.cord.lon;
-  let lat = response.cord.lon;
-  let queryURLUv = "https://api.openweathermap.org/data/2.5/uvi?" + "lat=" + lat +"&lon=" + lon + APIKey;
-
-  $.ajax({
-    url: queryURLUv,
+    url: queryURL,
     method: "GET"
-  }).then(function(response) {
+})
+.then(function(response) {
     console.log(queryURL);
     console.log(response);
 
-    $(".uv").text("UV Index: " + response.val());
+
+    $(".city").html("<h1>" + response.name + "</h1>");
+    $(".icon").html("<img src='https://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Icon depicting current weather.'>");
+    $(".wind").text("Wind Speed: " + response.wind.speed + " MPH");
+    $(".humidity").text("Humidity: " + response.main.humidity + "%");
+
+
+var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+$(".tempF").text("Temperature: " + Math.round(tempF) + " °F");
+
+
+var lon = response.coord.lon;
+var lat = response.coord.lon;
+var queryURLUv = "https://api.openweathermap.org/data/2.5/uvi?" + "lat=" + lat + "&lon=" + lon + APIKey;
+
+
+
+
+$.ajax({
+    url: queryURLUv,
+    method: "GET"
+})
+.then(function(response) {
+    console.log(queryURL);
+    console.log(response);
+
     
+    $(".uv").text("UV Index: " + response.value);
+    $(".uv").css("background-color", "yellow");
 
 
-  });
-
-
+});
 
 
 });
 
 $.ajax({
-  url: queryURLFive,
-  method: "GET"
-}).then(function(response) {
-  console.log(queryURLFive);
-  console.log(response);
+    url: queryURLFive,
+    method: "GET"
+})
+.then(function(response) {
+    console.log(queryURLFive);
+    console.log(response);
 
-let dayOne = moment(response.list[0].dt_txt).format("ddd, MMM Do");
-$(".day-one-date").html("<h6>" + dayOne + "</h6>")
-$(".day-one-humidity").text("Humidity: " + response.list[0].main.humidity +"%");
+var dayOne = moment(response.list[0].dt_txt).format("ddd, MMM D");
+console.log(moment(response.list[0].dt_txt).format("ddd, MMM D"));
 
-let tempOne = (response.list[0].main.temp - 273.15) * 1.80 + 32;
-$(".day-one-temp").text("Temp: " + Math.random(tempOne) + " °F");
+
+$(".day-one-date").html("<h6>" + dayOne + "</h6>");
+$(".day-one-icon").html("<img src='https://openweathermap.org/img/w/" + response.list[0].weather[0].icon + ".png' alt='Icon depicting current weather.'>");
+$(".day-one-humidity").text("Humidity: " + response.list[0].main.humidity + "%");
+
+
+var tempOne = (response.list[0].main.temp - 273.15) * 1.80 + 32;
+$(".day-one-temp").text("Temp: " + Math.round(tempOne) + " °F");
+
+
+
 
 });
 
 
-function searchFunction (){
-  localStorage.setItem("inputcontent-" + searchInput.val(), searchInput.val());
-  localStorage.setItem("lastresult", searchInput.val());
+
+
+var searchInput = document.querySelector(".input");
+var searchOutput = document.querySelector(".output");
+var searchButton = document.querySelector(".search");
+
+searchButton.addEventListener("click", searchFunction);
+
+
+function searchFunction() {
+    localStorage.setItem("inputcontent-" + searchInput.value, searchInput.value);
+    localStorage.setItem("lastresult", searchInput.value);
 
 }
 
-for (var i = 0; i < localStorage.lenght; i++){
-  $("output").append("<p class='cityresult'>" + localStorage.getItem(
-    localStorage.key(i)) + "</p>")
-  
+for (var i = 0; i < localStorage.length; i++){
+    $(".output").append("<p class='cityresult'>" + localStorage.getItem(localStorage.key(i)) + "</p>");
 }
 
-let currentDay = moment().format("dddd, MMMM Do YYYY");
 
-function insertCurrentDay(){
-  $(".current-date").text(currentDay);
+
+var currentDay = moment().format("dddd, MMMM Do");
+
+function insertCurrentDay() {
+    $(".current-date").text(currentDay);
 };
 
 insertCurrentDay();
 
 console.log(currentDay);
-

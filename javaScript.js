@@ -7,7 +7,7 @@ let queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+city+APIKey;
 let queryURLFive = "https://api.openweathermap.org/data/2.5/forecast?q="+city+APIKey;
 let searchInput = $(".input");
 let searchOutput = $(".output");
-let searchButton = $(".search");
+let $searchButton = $(".search");
 $searchButton.on("click", searchFunction);
 
 $.ajax({
@@ -29,7 +29,7 @@ $.ajax({
   let lat = response.cord.lon;
   let queryURLUv = "https://api.openweathermap.org/data/2.5/uvi?" + "lat=" + lat +"&lon=" + lon + APIKey;
 
-  $ajax({
+  $.ajax({
     url: queryURLUv,
     method: "GET"
   }).then(function(response) {
@@ -47,26 +47,26 @@ $.ajax({
 
 });
 
-// $ajax({
-//   url: queryURlFive,
-//   method: "GET"
-// }).then(function(response) {
-//   console.log(queryURLFive);
-//   console.log(response);
+$.ajax({
+  url: queryURLFive,
+  method: "GET"
+}).then(function(response) {
+  console.log(queryURLFive);
+  console.log(response);
 
-// let dayOne = moment().(response.list[o].dt_txt).format("ddd, MMM D");
-// $(".day-one-date").html("<h6>" + dayOne + "</h6>")
-// $(".day-one-humidity").text("Humidity: " + response.list[0].main.humidity +"%");
+let dayOne = moment(response.list[o].dt_txt).format("ddd, MMM D");
+$(".day-one-date").html("<h6>" + dayOne + "</h6>")
+$(".day-one-humidity").text("Humidity: " + response.list[0].main.humidity +"%");
 
-// let tempOne = (response.list[0].main.temp - 273.15) * 1.80 + 32;
-// $(".day-one-temp").text("Temp: " + Math.random(tempOne) + " °F");
+let tempOne = (response.list[0].main.temp - 273.15) * 1.80 + 32;
+$(".day-one-temp").text("Temp: " + Math.random(tempOne) + " °F");
 
-// });
+});
 
 
 function searchFunction (){
-  localStorage.setItem("inputcontent-" + searchInput.val(), searchInput.val());
-  localStorage.setItem("lastresult", searchInput.val());
+  localStorage.setItem("inputcontent-" + searchInput.value(), searchInput.val());
+  localStorage.setItem("lastresult", searchInput.value());
 
 }
 
